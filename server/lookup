@@ -1,0 +1,39 @@
+const char* lookup(const char* path)
+{
+    char* temp = strrchr(path, 46);
+    int size = 0;
+    for (int i = 0, n = strlen(temp); i < n; i++)
+    {
+        size++;
+    }
+    char* mime = malloc(sizeof(size));
+    strcpy(mime, temp);
+    
+    if (strcasecmp(mime, ".css") == 0) {
+        mime = "text/css"; }
+        
+    else if (strcasecmp(mime, ".html") == 0) { 
+        mime = "text/html"; }
+        
+    else if (strcasecmp(mime, ".gif") == 0) { 
+        mime = "image/gif"; }
+        
+    else if (strcasecmp(mime, ".ico") == 0) { 
+        mime = "image/x-icon"; }
+
+    else if (strcasecmp(mime, ".jpg") == 0) { 
+        mime = "image/jpeg"; }
+
+    else if (strcasecmp(mime, ".js") == 0) { 
+        mime = "text/javascript"; }
+
+    else if (strcasecmp(mime, ".php") == 0) { 
+        mime = "text/x-php"; }
+
+    else if (strcasecmp(mime, ".png") == 0) { 
+        mime = "image/png"; }
+        
+    else { 
+        return NULL; }
+    return mime;
+}
