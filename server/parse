@@ -1,0 +1,104 @@
+bool parse(const char* line, char* abs_path, char* query)
+{
+    // throw error when space > 2
+    int sp = 0;
+    for (int i = 0, n = strlen(line); i < n; i++)
+    {
+        if(line[i] == ' ') { sp++; }
+    }
+    if (sp > 2)
+    {
+        error(501);
+        return false;
+    }
+    
+    char* temp;
+    
+    // extract HTTP-version to http_ver variable
+    char http_ver[9];
+    temp = strstr(line, "HTTP/1.");
+    strcpy(http_ver, temp);
+    http_ver[8] = '\0'; 
+                        
+    // if HTTP-version is not HTTP/1.1, respond to the browser with 505 HTTP Version Not Supported and return false.
+    if (strcmp(http_ver, "HTTP/1.1") != 0)
+    {
+        error(505);
+        return false;
+    }
+    
+    // Extract GET to method variable
+    char method[5];
+    strncpy(method, line, 4);
+    method[4] = '\0'; 
+    // printf("strlen method == %lu\n", strlen(method));
+                        
+    if (strncmp(method, "GET ", 4) != 0)
+    {
+        error(405);
+        return false;
+    }
+    
+    // temporary extract to query everything after "?" including "?"
+    if (strchr(line, 63) != 0)
+    {
+        // copy string pointed by temp to query
+        temp = (strchr(line, ((char)63)) +1);
+        strcpy(query, temp);
+        // terminate query where http_ver starts(+SP)
+        query[strlen(query) - strlen(http_ver) - 3] = '\0';
+    }
+    else
+    {
+        strcpy(query, "");
+    }
+    
+    // extract absolute-path and request-target                    
+    char request_target[70];
+    char absolute_path[70];
+    if (line[4] == '/')
+    {
+        temp = strchr(line, 47);
+        strcpy(request_target, temp);
+        // termiante request-target where http-ver starts (+SP)
+        request_target[strlen(request_target) - strlen(http_ver) - 3] = '\0';
+        
+        if (strcmp(query, "") == 0)
+        {
+            strcpy(absolute_path, temp);
+            // terminate absolute-path where query starts 
+            absolute_path[strlen(absolute_path) - strlen(http_ver) - 3] = '\0';
+            // printf("strlen absolute_path == %lu\n", strlen(absolute_path));
+            
+        }
+        else
+        {
+            strcpy(absolute_path, request_target);
+        }
+    }
+    else
+    {
+        error(501);
+        return false;
+    }
+    
+    // if request-target contains a ", respond to the browser with 400 Bad Request and return false;
+    if (strstr(request_target, "\"") != 0 )
+    {
+        error(400);
+        return false;
+    }
+    
+    // If all is well, store absolute-path at the address in abs_path
+    strcpy(abs_path, absolute_path);
+    if (strchr(abs_path, 63))
+    {
+        abs_path[strlen(abs_path) - strlen(query) - 1] = '\0';
+    }
+    // Store at the address in query the query substring from request-target. If that substring is absent (even if a ? is present), then query should be "", thereby consuming one byte, whereby query[0] is '\0'. You may assume that the memory to which query points will be at least of length LimitRequestLine + 1.
+    if (query == 0 || (strcmp(query, "?") == 0))
+    {
+        strcpy(query, "");
+    }
+    return true;
+}
