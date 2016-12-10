@@ -1,3 +1,4 @@
+<h2>Portfolio</h2>
 <table class="table">
     <div>
         <tr>
@@ -21,5 +22,10 @@
         <?php endforeach ?>
     </div>
 </table>
-<p id="bal">Current balance</p>
+<p id="bal">Free cash</p>
+<p id="bal_sum">$<?= $cash[0]["cash"] ?></p>
+
+<p class="bal">Current balance</p>
 <p id="bal_sum">$<?= $balance["balance"] ?></p>
+
+
