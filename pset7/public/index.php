@@ -55,12 +55,19 @@
             // print_r("</br></br>");
         }
     }
-    
-    
+    $cash = CS50::query("SELECT cash FROM users WHERE id = ?", $_SESSION["id"]);
+        
+        print_r($cash);
+        print_r("</br></br>");
+    $sum_total = $sum_total + $cash[0]["cash"]; 
+        print_r($sum_total);
+        print_r("</br></br>");
+    $cash[0]["cash"] = number_format($cash[0]["cash"], $decimals = 2);
     $balance = ["balance" => $sum_total];
     // print_r($balance["balance"]);
     //         print_r("</br></br>");
     // render portfolio
-    render("portfolio.php", ["positions" => $positions, "balance" => $balance, "title" => "Portfolio"]);
+    render("portfolio.php", ["positions" => $positions, "balance" => $balance, "cash" => $cash, "title" => "Portfolio"]);
 
 ?>
+
