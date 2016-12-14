@@ -1,38 +1,27 @@
 <?php
-    
     require("../includes/config.php");
-    
-    // dump($_POST["symbol"]);
-    // dump($_POST["name"]);
-    // dump($_POST["price"]);
-                                // $a =1;
-                                // $b =2;
                                 
-        // displays an HTML form via which a user can submit a stock’s symbol
-        
+    // displays an HTML form via which a user can submit a stock’s symbol
     if ($_SERVER["REQUEST_METHOD"] == "GET")
     {
-        // else render form
         render("quote_form.php", ["title" => "Choose stock symbol"]);
     }
     else if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        if (empty($_POST["symbol"]))
+        // grab input from user and capitalize it
+        $input_stock_symbol = strtoupper($_POST["symbol"]);
+        if (empty($input_stock_symbol))
         {
             apologize("Please choose a valid symbol");
         }
-        $stock = strtoupper($_POST["symbol"]);
-                    print_r("<p>\$stock var: |$stock|</p>");
-                    print_r("<p>POST val: |".$_POST["symbol"]."|</p>");
-        $s = lookup($stock);
-                    print_r("<p>\$s val: |".$s["symbol"]."|</p>");
-        $s["price"] = number_format($s["price"], $decimals = 2);
-        
-        // displays, minimally, a stock’s latest price (if passed, via render, an appropriate value).
-        if ($s["symbol"] == strtoupper($_POST["symbol"]))
+        // check iwhether symbol exists in yahoo            
+        $yahoo_stock_array = lookup($input_stock_symbol);
+        // format price to two places after comma
+        $yahoo_price = number_format($yahoo_stock_array["price"], $decimals = 2);
+        // displays a stock’s current price if user input is in yahoo db
+        if ($yahoo_stock_array["symbol"] == $input_stock_symbol)
         {
-            render("quote.php", ["price" => $s["price"], "name" => $s["name"], "title" => "Stock price"]);
-            // render("quote.php", ["price" => $s["price"], "name" => $s["name"], "title" => "Stock price"]);
+            render("quote.php", ["price" => $yahoo_price, "name" => $yahoo_stock_array["name"], "title" => "Stock price"]);
         }
         else
         {
