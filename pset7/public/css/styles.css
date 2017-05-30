@@ -1,0 +1,102 @@
+/**
+ * styles.css
+ *
+ * Computer Science 50
+ * Problem Set 7
+ *
+ * Global CSS.
+ */
+
+.container
+{
+    /* center contents */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#top
+{
+    /*surround with whitespace */
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+#top .nav
+{
+    /* center navigation pills */
+    display: inline-block;
+}
+
+#middle .form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+#bottom
+{
+    /* shrink bottom's font size */
+    font-size: smaller; /*experiment
+
+    /* surround with whitespace */
+    margin: 20px;
+}
+
+.table {
+    /*border: solid black 1px;*/
+    /*padding: 10px;*/
+    /*margin: 5px;*/
+    /* center form controls */
+    /*display: inline-block;*/
+
+    /* override Bootstrap's 100% width for form controls */
+    /*width: auto;*/
+    width:70%; 
+    margin-left:15%; 
+    margin-right:15%;
+    
+   
+}
+
+.cell {
+    padding: 5px 20px;
+    width: auto;
+    border: solid black 1px;
+    text-align: center;
+}
+
+.cell_top {
+    padding: 5px 20px;
+    width: auto;
+    border: solid black 1px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#balance {
+    padding-left: 20px;
+    border: solid black 1px;
+    text-align: left;
+}
+.bal {
+    font-size: 20px;
+    font-weight: 300;
+    color: black;
+    margin: auto;
+}
+
+.bal_sum {
+    font-size: 30px;
+    font-weight: 300;
+    color: green;
+    margin: auto;
+}
+
+/*#sorry {*/
+/*    border: solid;*/
+/*    float: left;*/
+/*}*/

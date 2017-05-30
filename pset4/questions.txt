@@ -1,0 +1,44 @@
+0.  jpeg 24-bits (16,7 million colors)
+    gif 8-bits gif (256 colors)
+    png 8-bits upto 24-bits
+    bmp 32-bits (4 billion)
+    
+1.  gif
+
+2.  lossy compression loses the information of the image file (not noticable to human eye) while lossless does not lose information from image file
+
+3.  jpeg
+
+4.  System is modyfying the filename first character in the file directory entry to signal that the file directory has been deleted, then the directory entry can be recycled. Next, system moves the file clusters to list of free clusters, the data is still there ready to overwrite.
+
+5.  I can use Gutmann 22 erase patterns. To do so I can use software which uses this technique to erase files. This software can be either free or payable, and vary in ways of sanitizing hard-drives.
+
+6.  Header file which lets us use intN_t and uintN_t. They are exact-width integer types 
+
+7.  Those are used for the purpose of preserving exact size (in bytes) for BITMAPFILEHEADER and BITMAPINFOHEADER structs.
+
+8.  BYTE - 1byte
+    DWORD - 4bytes
+    LONG - 4bytes
+    WORD -2bytes
+
+9.  decimal - 19778
+    hexadecimal - 4d42
+    
+10. bfSize is the total size (in bytes) of the BMP file, while the biSize is a size (in bytes) of BITMAPINFOHEADER
+
+11. It means that the file is a top-down DIB, so its origin is in upper-left corner
+
+12. 'biBitCount' specifies the BMP's color depth.
+
+13. Because user may not provide a third argument 'outfile' (to which argv[2] is assigned) to which 'outptr' points to.
+
+14. Because we want that content read from 'inptr', to be write to 'outptr' only 1 time.
+
+15. 3
+
+16. The fseek() function sets the file position indicator in the file. Programmer is able to offset it by providing position from which he wants to offset it and negative or positive integer, to move indicator backward or forward respectively.
+
+17. It means the current position of the indicator. This is one of three options to start offseting the position indicator.
+
+18. Rick Astley

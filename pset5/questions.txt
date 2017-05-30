@@ -1,0 +1,11 @@
+0.  The longest word in english alphabet.
+1.  getrusage is checking how much resource were used during program run.
+2.  16
+3.  To save time and memory.
+4.  For loop is iterating char by char looking only for letters and apostrophes (not in index 0). If it encounter too long word or nonalpha, whole word is "zeroed" to preserve it from writing in 'words' variable
+5.  fscanf may not detect deciaml numbers and other nonalpha signs in the middle of the string
+6.  To make sure those two won't be changed by student in his code
+7.  I used hash table, hashed by simple hash function (presented by Lauren Carvalho) with singly linked lists. The nodes are inserted at the beggining of the linked list. It wasn't sorted, so it takes more time to check the mispellings.
+8.  0.49
+9.  I haven't made changes.
+10. I could use better hash function, but I want to proceed to week 7, web development, as soon as possible. Maybe I'll come back to this code later.

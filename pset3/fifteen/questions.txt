@@ -1,0 +1,12 @@
+questions.txt
+
+Computer Science 50
+Problem Set 3
+
+0. Game allows 3x3 up to 9x9 dimensions
+1. integers
+2. void greet(void)
+3. void init(void)
+    void draw(void)
+    bool move(int tile)
+    bool won(void)

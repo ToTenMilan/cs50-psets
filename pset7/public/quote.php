@@ -17,7 +17,7 @@
         // check iwhether symbol exists in yahoo            
         $yahoo_stock_array = lookup($input_stock_symbol);
         // format price to two places after comma
-        $yahoo_price = number_format($yahoo_stock_array["price"], $decimals = 2);
+        $yahoo_price = number_format($yahoo_stock_array["price"], 2);
         // displays a stock’s current price if user input is in yahoo db
         if ($yahoo_stock_array["symbol"] == $input_stock_symbol)
         {

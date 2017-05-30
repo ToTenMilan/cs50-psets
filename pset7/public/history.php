@@ -2,11 +2,9 @@
 
 // configuration
     require("../includes/config.php");
-    // get from database current user's transaction rows
+    // save in $rows symbol and shares columns of current user
     $rows = CS50::query("SELECT transaction, datetime, symbol, shares, price FROM history WHERE user_id = ?", $_SESSION["id"]);
-    // create empty array for use after foreach loop
     $positions = [];
-    // put values to positions array
     foreach ($rows as $row)
     {
         $positions[] = [
@@ -14,9 +12,9 @@
             "datetime" => $row["datetime"],
             "symbol" => $row["symbol"],
             "shares" => $row["shares"],
-            "price" => $row["price"],
+            "price" => number_format($row["price"], 2)
         ];
     }
-    send array to view
     render("history.php", ["positions" => $positions, "title" => "History"]);
+
 ?>

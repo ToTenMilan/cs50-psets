@@ -1,5 +1,6 @@
 <?php
 /* homepage of cs50 finance */
+
     // configuration
     require("../includes/config.php");
     // save in $rows symbol and shares columns of current user
@@ -13,9 +14,10 @@
         if ($stock !== false)
         {
             $total = $row["shares"] * $stock["price"];
+            
             $positions[] = [
                 "name" => $stock["name"],
-                "price" => $stock["price"],
+                "price" => number_format($stock["price"], 2),
                 "shares" => $row["shares"],
                 "symbol" => $row["symbol"],
                 "total" => $total
@@ -27,9 +29,11 @@
     $cash = CS50::query("SELECT cash FROM users WHERE id = ?", $_SESSION["id"]);
     // update total sum (free cash + value of all stocks)
     $balance = $balance + $cash[0]["cash"];
-    $cash[0]["cash"] = number_format($cash[0]["cash"], $decimals = 2);
+    $cash[0]["cash"] = number_format($cash[0]["cash"], 2);
     // $balance = ["balance" => $sum_total];
-    $balance = number_format($balance, $decimals = 2);
+    $balance = number_format($balance, 2);
+    
     // render portfolio
     render("portfolio.php", ["positions" => $positions, "balance" => $balance, "cash" => $cash, "title" => "Portfolio"]);
+
 ?>

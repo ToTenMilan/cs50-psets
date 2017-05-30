@@ -38,8 +38,10 @@
             CS50::query("INSERT INTO portfolios (user_id, symbol, shares) VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE shares = shares + VALUES(shares)", $_SESSION["id"], $input_symbol, $input_shares);
             // update free cash
             CS50::query("UPDATE users SET cash = cash - ? WHERE id = ?", $total_price , $_SESSION["id"]);
+            // update 'history' table
+            CS50::query("INSERT INTO `history`(`user_id`, `transaction`, `symbol`, `shares`, `price`) VALUES (?, ?, ?, ?, ?)", $_SESSION["id"], "BUY", $input_symbol, $input_shares, $yahoo_price);
             $stock_name = $yahoo_stock["name"];
-            render("buy.php", ["total_price" => $total_price, "name" => $stock_name, "title" => "Stocks sold"]);
+            render("buy.php", ["total_price" => number_format($total_price, 2), "name" => $stock_name, "title" => "Stocks sold"]);
         }
         else
         {
